@@ -6,7 +6,7 @@
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9a3rVoYRtE3fYPX5qaLLe8F7wv0ZsdN
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9a3rVoYRtE3fYPX5qOdbvAAuyU=
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9a3rVoYRtE3fYPX5q2NOuRd+la1FQ==
-::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9aDrF5TXew2GA==
+::fBE1pAF6MU+EWHzeyMfsyJ67vTgE1bI/wlGbGA59GQ0DeZuYkDt3/VM7X1t/adwX5FaqfJgktg==
 ::YAwzoRdxOk+EWAjk
 ::fBw5plQjdCyDJGyX8VAjFDdbQgO+GG6pDaET+NT34O2I7EQeW4I=
 ::YAwzuBVtJxjWCl3EqQJgSA==
@@ -21,8 +21,8 @@
 ::dAsiuh18IRvcCxnZtBNQ
 ::cRYluBh/LU+EWAjk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJjZksaHVTMbgs=
-::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTv0VNU=
+::cxY6rQJ7JhzQF1fEqQJjZksaHVTMbws=
+::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTv0VdU=
 ::ZQ05rAF9IAHYFVzEqQK1+PTdkv2VNWW+CaIPbzsgaDF4J5rY0Qfo/0EKug==
 ::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
 ::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
@@ -44,6 +44,13 @@
 @ECHO OFF
 
 CD /D "%~DP0"
+
+CHCP 936>NUL
+TIMEOUT /T 1 /NOBREAK >NUL
+
+set regPath=HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify
+set regKey1=IconStreams
+set regKey2=PastIconsStream
 
 MSG %username% 感谢您使用本人制作的windows系统工具箱！
 MSG %username% 使用中有任何问题，记得联系我！
@@ -81,8 +88,6 @@ setlocal enableextensions enabledelayedexpansion
 
 @COLOR 3E
 TITLE 小龙windows系统工具箱
-CHCP 936>nul
-timeout /t 2 /nobreak >NUL
 :kai-shi
 CLS
 ECHO.
@@ -118,7 +123,7 @@ if /i "%sm%"=="Y" goto next
 if /i "%sm%"=="N" goto END
 ECHO.
 ECHO.输入无效，请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto kai-shi
 
@@ -211,7 +216,7 @@ ECHO               7 计算机管理                        H 设备管理器             
 ECHO.
 ECHO               8 打开组策略                        I 命令提示符                              T 卸载/重装微软商店		
 ECHO.
-ECHO               9 刷新组策略                        J 控制面板                                U 批量测试dns
+ECHO               9 刷新组策略                        J 控制面板                                U 批量PING公共dns
 ECHO.
 ECHO               O 电脑设置固定/自动ip地址、子网掩码、网关、dns地址（测试功能）                V 安全的清理C（系统）盘 
 ECHO.
@@ -264,7 +269,7 @@ if /i "%id%"=="Y" goto Y
 if /i "%id%"=="/" goto END
 ECHO.
 ECHO.输入无效,请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 
@@ -272,68 +277,68 @@ goto MENU
 CLS
 ECHO.
 ECHO.打开任务管理器中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 start /max %windir%\system32\taskmgr.exe /7
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :1
 CLS
 ECHO.
 ECHO.打开磁盘清理中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 %windir%\system32\cleanmgr.exe
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :2
 CLS
 ECHO.
 ECHO.打开系统信息中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 start /max %windir%\system32\msinfo32.exe
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :3
 CLS
 ECHO.
 ECHO.打开内存诊断中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 %windir%\system32\MdSched.exe
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :4
 CLS
 ECHO.
 ECHO.重启资源管理器中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 taskkill /f /IM explorer.exe
 start explorer.exe
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :5
 CLS
 ECHO.清空回收站中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 cmd.exe /c "ECHO A|PowerShell.exe -NoProfile -Command Clear-RecycleBin"
 ECHO. 已清空
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO. 执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :6
@@ -356,22 +361,21 @@ if /i "%shi-jian%"=="2" goto bxs
 if /i "%shi-jian%"=="3" goto zy
 ECHO.
 ECHO.输入无效，请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto 6
 
 :xs
 CLS
-@ECHO off
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSecondsInSystemClock /t REG_DWORD /d 1 /f
 TASKKILL /F /IM explorer.exe
 ECHO.
 ECHO restar explorer.exe
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 start %windir%\explorer.exe
 ECHO.
 ECHO.ok
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto 6
 
 :bxs
@@ -380,11 +384,11 @@ reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v
 TASKKILL /F /IM explorer.exe
 ECHO.
 ECHO restar explorer.exe
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 START %windir%\explorer.exe
 ECHO.
 ECHO.ok!
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto 6
 
 :zy
@@ -396,60 +400,60 @@ goto MENU
 CLS
 ECHO.
 ECHO.打开计算机管理中......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 start /max %windir%\system32\compmgmt.msc /s
 ECHO.
 ECHO.已打开
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.执行完成，正在返回主菜单，请稍后......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :8
 CLS
 ECHO.
 ECHO.打开组策略中......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 start /max gpedit.msc
 ECHO.
 ECHO.已打开
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.执行完成，正在返回主菜单，请稍后......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :9
 CLS
 ECHO.
 ECHO.正在刷新组策略......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 gpupdate /force
 ECHO.
 ECHO.已刷新
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.执行完毕，正在返回主菜单......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :A
 CLS
 ECHO.
 ECHO.准备中......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 set a=
 set /p a=【请输入关键字】：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 start https://www.baidu.com/s?wd=%a%
 ECHO.
 ECHO.搜索中......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.已完成
-timeout /t 1 /nobreak >nul
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
 ECHO.
@@ -459,7 +463,7 @@ goto MENU
 CLS
 ECHO.
 ECHO.即将运行系统文件完整性检查......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 
 CLS
 
@@ -489,10 +493,10 @@ PAUSE>NUL
 CLS
 ECHO.
 ECHO.执行完成
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.正在返回主菜单，请稍后......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 
@@ -500,7 +504,7 @@ goto MENU
 CLS
 ECHO.
 ECHO.准备中......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 CLS
 ECHO.
 ECHO.
@@ -514,7 +518,7 @@ if /i "%put%"=="Y" goto TT
 if /i "%put%"=="N" goto SS
 ECHO.
 ECHO.输入无效，请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto C
 
@@ -529,6 +533,7 @@ ECHO.
 set /p yichu=【请输入工具脚本运行路径/位置，并回车】：
 PowerShell.exe -ExecutionPolicy Bypass -File "%yichu%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%yichu%"
+PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%yichu%"
 ECHO.
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
@@ -537,7 +542,7 @@ goto MENU
 :SS
 ECHO. 
 ECHO.您选择了不继续操作，将返回主页面！
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto MENU
 
@@ -547,15 +552,15 @@ goto MENU
 CLS
 ECHO.
 ECHO.即将执行，请等待......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.开始执行
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ipconfig /flushdns
 ECHO.
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto MENU
 
@@ -563,12 +568,12 @@ goto MENU
 CLS
 ECHO.
 ECHO.准备中......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 CLS
 ECHO.
 ECHO.
 ECHO.
-ECHO 本功能可以解决桌面图标问题，清理系统图标缓存数据库，系统托盘记忆的图标，去除图标箭头和盾牌。
+ECHO 本功能可以解决桌面图标、清理系统图标缓存数据库、系统托盘记忆的图标、去除图标箭头和盾牌以及其他图标问题。
 ECHO.
 ECHO.
 ECHO.
@@ -582,13 +587,16 @@ ECHO.
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v 29 /d "%systemroot%\system32\imageres.dll,197" /t reg_sz /f
 ECHO.
 :: 关闭Windows外壳程序explorer
-taskkill /f /im explorer.exe
+taskkill /IM explorer.exe /F
 ECHO.
-:: 清理系统图标缓存数据库
-attrib -h -s -r "%userprofile%\AppData\Local\iconcache.db" 
-attrib /s /d -h -s -r "%userprofile%\AppData\Local\Microsoft\Windows\Explorer\*"
-del "%userprofile%\AppData\Local\iconcache.db" /f /q
+REM 清理系统图标缓存数据库
+
+attrib -h -s -r "%userprofile%\AppData\Local\IconCache.db"
+
 del /f "%userprofile%\AppData\Local\IconCache.db"
+
+attrib /s /d -h -s -r "%userprofile%\AppData\Local\Microsoft\Windows\Explorer\*"
+
 del /f "%userprofile%\AppData\Local\Microsoft\Windows\Explorer\thumbcache_32.db"
 del /f "%userprofile%\AppData\Local\Microsoft\Windows\Explorer\thumbcache_96.db"
 del /f "%userprofile%\AppData\Local\Microsoft\Windows\Explorer\thumbcache_102.db"
@@ -596,14 +604,22 @@ del /f "%userprofile%\AppData\Local\Microsoft\Windows\Explorer\thumbcache_256.db
 del /f "%userprofile%\AppData\Local\Microsoft\Windows\Explorer\thumbcache_1024.db"
 del /f "%userprofile%\AppData\Local\Microsoft\Windows\Explorer\thumbcache_idx.db"
 del /f "%userprofile%\AppData\Local\Microsoft\Windows\Explorer\thumbcache_sr.db"
-:: 清理 系统托盘记忆的图标
-ECHO Y|reg delete "HKEY_CLASSES_ROOT\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify" /v IconStreams
-ECHO Y|reg delete "HKEY_CLASSES_ROOT\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify" /v PastIconsStream
+
+REM 清理 系统托盘记忆的图标
+
+FOR /F "tokens=*" %%a in ('Reg Query "%regpath%" /v %regkey1% ^| find /i "%regkey1%"') do (reg delete "%regpath%" /f /v "%regkey1%")
+ECHO.
+ECHO. 删除了注册表键值 "IconStreams"。
+ECHO.
+FOR /F "tokens=*" %%a in ('Reg Query "%regpath%" /v %regkey2% ^| find /i "%regkey2%"') do (reg delete "%regpath%" /f /v "%regkey2%")
+ECHO.
+ECHO. 删除了注册表键值 "PastIconsStream"。
+ECHO.
 :: 重启Windows外壳程序explorer
 start explorer.exe
 ECHO.
 ECHO.OK!
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
@@ -624,10 +640,10 @@ ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
 ECHO.
 ECHO.准备中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.开始执行...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 CLS
 ECHO.
 ECHO.
@@ -636,7 +652,7 @@ ECHO.
 ECHO.
 ECHO.
 ECHO.一. 观察本地网络设置是否正确
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 CLS
 ECHO. 
 ECHO.
@@ -674,7 +690,7 @@ ECHO.
 ECHO.
 ECHO.开始ping 127.0.0.1...
 ECHO.
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.
 ECHO.**********************************ping 127.0.0.1********************************
@@ -717,7 +733,7 @@ ECHO.
 ECHO.
 ECHO.开始Ping本机IP地址...
 ECHO.
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.
 ECHO.**********************************ping本机IP地址********************************
@@ -733,7 +749,7 @@ CLS
 ECHO.
 ECHO.
 ECHO.您的输入有误，请在功能刷新后重新输入！
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto ip
 
 :pingIP
@@ -741,7 +757,7 @@ CLS
 ECHO.
 ECHO.
 ECHO.您输入了 %ip% ,开始执行操作...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.
 ping -n 15 -l 1500 "%ip%" | findstr /I "TTL"
@@ -780,7 +796,7 @@ ECHO.
 ECHO.
 ECHO.开始ping网关或局域网内其他IP...
 ECHO.
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.
 ECHO.***************************ping网关或局域网内其他IP********************************
@@ -795,7 +811,7 @@ CLS
 ECHO.
 ECHO.
 ECHO.输入无效,请在功能刷新后重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto wgip
 
 :ipwg
@@ -841,7 +857,7 @@ ECHO.
 ECHO.
 ECHO.
 ECHO.开始ping远程IP或域名...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.
 ECHO.************************************ping远程IP或域名*****************************
@@ -857,7 +873,7 @@ CLS
 ECHO.
 ECHO.
 ECHO.你的输入有误，请在工具刷新后重新输入！
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto waiwang
 
 :wang
@@ -865,7 +881,7 @@ CLS
 ECHO.
 ECHO.
 ECHO.您输入了 %waiwang% ,开始执行操作...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.
 ping /n 15 /l 1400 "%waiwang%" | findstr /I "TTL"
@@ -886,7 +902,7 @@ PAUSE>NUL
 CLS
 ECHO.
 ECHO.开始测量路由情况...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 :: 六. 测量路由情况，显示数据包到达目的主机所经过的路径.traceroute命令的基本用法是，在命令提示符后键入“tracert host_name”或“tracert ip_address”，其中，tracert是traceroute在Windows操作系统上的称呼。
 set tracert=
@@ -898,7 +914,7 @@ CLS
 ECHO.
 ECHO.
 ECHO.你的输入有误，请在工具刷新后重新输入！
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto tracert
 
 :address
@@ -906,7 +922,7 @@ CLS
 ECHO.
 ECHO.
 ECHO.您输入了 %tracert% ,开始执行操作...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.
 tracert "%tracert%" 
@@ -939,14 +955,14 @@ goto MENU
 CLS
 ECHO.
 ECHO.开始尝试修复网络
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.完成后，将自动重启您的电脑，请您在电脑重启后，重新连接到网络
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 netsh winsock reset
 ECHO.OK!
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.关闭程序，并重启中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 shutdown -r -t 30
 goto END
 
@@ -955,12 +971,12 @@ goto END
 CLS
 ECHO.
 ECHO.打开设备管理器中......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 start /max devmgmt.msc
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 
@@ -968,7 +984,7 @@ goto MENU
 CLS
 ECHO.
 ECHO. Openning Cmd......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 CLS
 ECHO.
 ECHO. 使用结束后，键入 ' exit ' 即可退出cmd命令提示符！
@@ -979,7 +995,7 @@ ECHO.
 CLS
 %windir%\system32\cmd.exe
 ECHO.
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 
@@ -988,14 +1004,14 @@ goto MENU
 CLS
 ECHO.
 ECHO.打开控制面板中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 start /max %SystemRoot%\system32\control.exe
 ECHO.
 ECHO.已打开
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 
@@ -1003,11 +1019,11 @@ goto MENU
 CLS
 ECHO.
 ECHO.打开网络连接中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 rundll32.exe shell32.dll,Control_RunDLL ncpa.cpl
 ECHO.
 ECHO.执行完毕，自动返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 
@@ -1018,7 +1034,7 @@ ECHO.
 ECHO.
 ECHO.
 ECHO. 获取电脑以往已连接WIFI名称及密码中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 CLS
 ECHO.
 ECHO.
@@ -1041,7 +1057,7 @@ ECHO. " %name% " 的WI-FI密码为 " 关键内容 " 后面的字符串。
 ECHO.
 ECHO.
 ECHO.已完成
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
@@ -1076,7 +1092,7 @@ if /i "%a%"=="Y" goto open
 if /i "%a%"=="N" goto MENU
 ECHO.
 ECHO.输入无效,请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto M
 
@@ -1134,7 +1150,7 @@ goto MENU
 CLS
 ECHO.
 ECHO 该功能可以给电脑设置固定/自动ip地址，子网掩码，网关，dns地址（测试功能）
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO  -------------------------------------------------------------------------------
 ECHO.
@@ -1153,7 +1169,7 @@ if /i "%net-set%"=="2" goto static
 if /i "%net-set%"=="3" goto MENU
 ECHO.
 ECHO.输入无效，请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto O
 
@@ -1161,49 +1177,49 @@ goto O
 CLS
 ECHO.
 ECHO 开始配置...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.
 ECHO 常用的网络连接名称有：WLAN，以太网，本地连接等。
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO 不同电脑设置会有所不同，一般为“本地连接”。你可以在“控制面板”“网络连接”或命令提示符下输入ipconfig /all中看到。
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 set /p name=【输入网络连接名称并回车】：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO 自动获取IP地址......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 netsh interface IP set address name="%name%" source=dhcp
 ECHO.
 ECHO 自动获取DNS服务器......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 netsh interface IP set dns name="%name%" source=dhcp
 ECHO.
 ECHO 设置成功.......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO 正在刷新设置......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ipconfig /flushdns
 ECHO.
 ECHO.请您按下键盘任意键继续...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 PAUSE>NUL
 CLS
 ECHO.
 ECHO.
 ECHO 显示新的设置......
-timeout /t 2 /nobreak >NUL 
+TIMEOUT /T 1 /NOBREAK >NUL 
 ECHO.
 ipconfig /all
 ECHO.
 ECHO.设置完毕，请您按下键盘任意键继续...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 PAUSE>NUL
 goto O
 
@@ -1211,103 +1227,103 @@ goto O
 CLS
 ECHO.
 ECHO 开始配置...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO 常用的网络连接名称有：WLAN，以太网，本地连接等。
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO 不同电脑设置会有所不同，一般为“本地连接”。你可以在“控制面板”“网络连接”或命令提示符下输入ipconfig /all中看到。
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.
 set /p name=【输入网络连接名称并回车】：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 set /p addr=【输入IP地址并回车】：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 set /p mask=【输入子网掩码并回车】：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 set /p gateway=【输入网关并回车】：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 set /p dns=【输入首选dns并回车】：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 set /p dns1=【输入备用dns1并回车】：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 set /p dns2=【输入备用dns2并回车】：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO 
 CLS
 ECHO.
 ECHO.
 ECHO 您已输入：
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO           网络连接名称：%name%
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO           IP地址：%addr%
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO           子网掩码：%mask%
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO           网关：%gateway%
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO           首选dns：%dns%
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO           备用dns1：%dns1%
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO           备用dns2：%dns2%
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.请您按下键盘任意键继续...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 PAUSE>NUL
 CLS
 ECHO.
 ECHO.
 ECHO 开始配置中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 netsh interface IP set address name="%name%" source=static addr="%addr%" mask="%mask%" gateway="%gateway%" gwmetric=0
 ECHO.
 ECHO IP地址、子网掩码和网关设置完成.......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 netsh interface IP set dns name="%name%" source=static addr="%dns%" register=primary 
 netsh interface IP add dns name="%name%" addr="%dns1%" index=2
 netsh interface IP add dns name="%name%" addr="%dns2%" index=3
 ECHO.
 ECHO dns设置完成.......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO 正在刷新设置......
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ipconfig /flushdns
 ECHO.
 ECHO.请您按下键盘任意键继续...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 PAUSE>NUL
 CLS
 ECHO.
 ECHO.
 ECHO 显示新的设置......
-timeout /t 2 /nobreak >NUL 
+TIMEOUT /T 1 /NOBREAK >NUL 
 ECHO.
 ipconfig /all
 ECHO.
 ECHO.设置完毕，请您按下键盘任意键继续...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 PAUSE>NUL
 goto O
 
@@ -1338,7 +1354,7 @@ if /i "%input%"=="3" goto MENU
 if /i "%input%"=="4" goto CQ
 ECHO.
 ECHO.输入无效，请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto P
 
@@ -1346,7 +1362,7 @@ goto P
 CLS
 ECHO.
 ECHO 正在执行操作...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve 
 ECHO OK!
 ECHO.请您按下键盘任意键继续...
@@ -1357,7 +1373,7 @@ goto P
 CLS
 ECHO.
 ECHO 正在执行操作...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 reg delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /va /f
 ECHO OK!
 ECHO.请您按下键盘任意键继续...
@@ -1368,17 +1384,17 @@ goto P
 CLS
 ECHO.
 ECHO 返回主菜单中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 :CQ
 CLS
 ECHO.
 taskkill /f /im explorer.exe
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 start explorer.exe
 ECHO OK!
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto P
 
 
@@ -1411,7 +1427,7 @@ if /i "%rw%"=="3" goto hree
 if /i "%rw%"=="4" goto ex
 ECHO.
 ECHO.输入无效，请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto Q
 
@@ -1425,26 +1441,26 @@ PAUSE>NUL
 ECHO.
 start inetcpl.cpl
 ECHO.OK!
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto Q
 
 :wo
 CLS
 ECHO.
 ECHO.清空应用商店的缓存...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 wsreset.exe
 ECHO.
 ECHO.OK!
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto Q
 
 :hree
 CLS
 ECHO.
 ECHO.重新部署操作进程中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.本功能可以重新部署WindowsStore，需要输入路径/位置，例如 ：D:\桌面\ws.ps1
 ECHO.
@@ -1452,6 +1468,7 @@ set /p wse=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
 PowerShell.exe -ExecutionPolicy Bypass -File "%wse%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%wse%"
+PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%wse%"
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
 goto Q
@@ -1465,7 +1482,7 @@ goto MENU
 CLS
 ECHO.
 ECHO.添加win家庭版组策略组件中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 
 pushd "%~dp0"
  
@@ -1487,7 +1504,7 @@ goto MENU
 CLS
 ECHO.
 ECHO. 准备中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 CLS
 ECHO.
 ECHO.
@@ -1497,6 +1514,7 @@ set /p jiaoben=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
 PowerShell.exe -ExecutionPolicy Bypass -File "%jiaoben%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%jiaoben%"
+PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%jiaoben%"
 ECHO.
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
@@ -1527,7 +1545,7 @@ if /i "%remove%"=="2" goto remove2
 if /i "%remove%"=="3" goto remove3
 ECHO.
 ECHO.输入无效，请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto T
 
@@ -1535,7 +1553,7 @@ goto T
 CLS
 ECHO.
 ECHO. 开始卸载...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.本功能可以卸载商店，需要输入路径/位置，例如 ：D:\桌面\remove.ps1
 ECHO.
@@ -1544,6 +1562,7 @@ set /p remove1=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
 PowerShell.exe -ExecutionPolicy Bypass -File "%remove1%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%remove1%"
+PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%remove1%"
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
 goto T
@@ -1560,6 +1579,7 @@ set /p AddApp=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
 PowerShell.exe -ExecutionPolicy Bypass -File "%AddApp%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%AddApp%"
+PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%AddApp%" 
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
 goto T
@@ -1568,7 +1588,7 @@ goto T
 CLS
 ECHO.
 ECHO.退出并返回主菜单...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 
@@ -1579,15 +1599,15 @@ CLS
 ECHO.
 ECHO  本功能可以批量测试dns，以备让您设置最佳的dns地址。
 ECHO.
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO  开始测试，测试时间可能较长，请您耐心等待结束...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 IF EXIST dns.ini (
 for /F %%I IN (dns.ini) DO PING %%I
 ) ELSE (
 ECHO  dns.ini不存在，已重新创建该文件。请您返回主菜单后，重新进入本功能重试！
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO 114.114.114.114 > dns.ini
 ECHO 114.114.115.115 >> dns.ini 
 ECHO 114.114.114.119 >> dns.ini
@@ -1618,10 +1638,10 @@ goto MENU
 CLS
 ECHO.
 ECHO.  本功能可以安全的清理C（系统）盘，比如：C盘temp临时文件、安装软件解压后的临时文件、删除SoftwareDistribution里面download文件资料等。
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO   清理时间可能较长，请耐心等待...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 CLS
 ECHO.
 ECHO.
@@ -1640,13 +1660,11 @@ del /f /q %userprofile%\recent\*.*
 del /f /s /q "%userprofile%\Local Settings\Temporary Internet Files\*.*"
 del /f /s /q "%userprofile%\Local Settings\Temp\*.*"
 del /f /s /q "%userprofile%\recent\*.*"
-RD %TEMP% /F /S /Q
-MKDIR %TEMP% 
-del /f /s /q "%systemroot%\Softwaredistribution"
+del /f /s /q "%windir%\SoftwareDistribution\Download\*.*"
 ECHO.
 ECHO.
 ECHO  完成！
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO. 请您按下键盘任意键继续...
 PAUSE>NUL
@@ -1681,7 +1699,7 @@ if /i "%rwl%"=="3" goto three
 if /i "%rwl%"=="4" goto four
 ECHO.
 ECHO.输入无效，请重新输入...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 goto Y
 
@@ -1689,12 +1707,12 @@ goto Y
 CLS
 ECHO.
 ECHO. 重启Windows资源管理器中...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 taskkill /f /im explorer.exe
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 start explorer.exe
 ECHO.OK!
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto Y
 
 :two
@@ -1709,6 +1727,7 @@ set /p bushu=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
 PowerShell.exe -ExecutionPolicy Bypass -File "%bushu%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%bushu%"
+PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%bushu%"
 ECHO.
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
@@ -1718,18 +1737,18 @@ goto Y
 CLS
 ECHO.
 ECHO.检查并修复Windows文件
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 sfc /scannow
 ECHO.
 ECHO.OK!
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto Y
 
 :four
 CLS
 ECHO.
 ECHO.Returnning to MENU...
-timeout /t 2 /nobreak >NUL
+TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
 
@@ -1737,8 +1756,8 @@ goto MENU
 CLS
 ECHO.
 ECHO.退出程序中......
-timeout /t 2 /nobreak >NUL
-EXIT
+TIMEOUT /T 1 /NOBREAK >NUL
+EXIT /B
 
 
 
