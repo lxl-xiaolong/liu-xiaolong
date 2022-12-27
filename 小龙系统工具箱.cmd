@@ -7,6 +7,9 @@
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9a3rVoYRtE3fYPX5qOdbvAAuyU=
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9a3rVoYRtE3fYPX5q2NOuRd+la1FQ==
 ::fBE1pAF6MU+EWHzeyMfsyJ67vTgE1bI/wlGbGA59GQ0DeZuYkDt3/VM7X1t/adwX5FaqfJgktg==
+::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIroL5uT07u6Unnkye84MRIje37/AJfgWig==
+::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIroL5uT07u6Unnkye84MRJrV1ruNK+UBp1bhYYM9mH9Cnas=
+::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIroL5uT07u6Unnkye84MRJrM3vqLOOVz
 ::YAwzoRdxOk+EWAjk
 ::fBw5plQjdCyDJGyX8VAjFDdbQgO+GG6pDaET+NT34O2I7EQeW4I=
 ::YAwzuBVtJxjWCl3EqQJgSA==
@@ -21,8 +24,8 @@
 ::dAsiuh18IRvcCxnZtBNQ
 ::cRYluBh/LU+EWAjk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJjZksaHVTMbws=
-::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTv0VdU=
+::cxY6rQJ7JhzQF1fEqQJjZksaHVTMbTva
+::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTv0V+V8
 ::ZQ05rAF9IAHYFVzEqQK1+PTdkv2VNWW+CaIPbzsgaDF4J5rY0Qfo/0EKug==
 ::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
 ::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
@@ -42,11 +45,12 @@
 :: ------------------------------------    分割线：以下为主程序代码     -----------------------------------------
 
 @ECHO OFF
-
+@COLOR E
 CD /D "%~DP0"
-
 CHCP 936>NUL
 TIMEOUT /T 1 /NOBREAK >NUL
+TITLE 小龙windows系统工具箱
+setlocal enableextensions enabledelayedexpansion
 
 set regPath=HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify
 set regKey1=IconStreams
@@ -57,37 +61,86 @@ MSG %username% 使用中有任何问题，记得联系我！
 MSG %username% 联系方式1（qq邮箱：2539223617@qq.com）
 MSG %username% 联系方式2（微信号：Pisces_Mar14_LXL）
 
-:: BatchGotAdmin
-:-------------------------------------
-REM  --> Check for permissions
-    IF "%PROCESSOR_ARCHITECTURE%" EQU "amd64" (
->nul 2>&1 "%SYSTEMROOT%\SysWOW64\cacls.exe" "%SYSTEMROOT%\SysWOW64\config\system"
-) ELSE (
->nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
-)
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-REM --> If error flag set, we do not have admin.
-if '%errorlevel%' NEQ '0' (
-    ECHO Requesting administrative privileges...
-    goto UACPrompt
-) else ( goto gotAdmin )
+:: [color=#070c0 !important]软媒魔方自动添加批处理文件管理员权限 ::
 
-:UACPrompt
-    ECHO Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-    set params = %*:"=""
-    ECHO UAC.ShellExecute "cmd.exe", "/c ""%~s0"" %params%", "", "runas", 1 >> "%temp%\getadmin.vbs"
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    "%temp%\getadmin.vbs"
-    del "%temp%\getadmin.vbs"
-    exit /B
+@echo off
 
-:gotAdmin
-    REM 执行到此处就已经获取了管理员权限，然后该干嘛干嘛
+CLS
 
-setlocal enableextensions enabledelayedexpansion
+ECHO.
 
-@COLOR 3E
-TITLE 小龙windows系统工具箱
+ECHO ================================
+
+ECHO 软媒魔方获取批处理文件管理员权限
+
+ECHO ================================
+
+:init
+
+setlocal DisableDelayedExpansion
+
+set "batchPath=%~0"
+
+for %%k in (%0) do set batchName=%%~nk
+
+set "vbsGetPrivileges=%temp%OEgetPriv_%batchName%.vbs"
+
+setlocal EnableDelayedExpansion
+
+:checkPrivileges
+
+NET FILE 1>NUL 2>NUL
+
+if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
+
+:getPrivileges
+
+if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
+
+ECHO.
+
+ECHO ********************************
+
+ECHO 请求 UAC 权限批准……
+
+ECHO ********************************
+
+ECHO Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
+
+ECHO args = "ELEV " >> "%vbsGetPrivileges%"
+
+ECHO For Each strArg in WScript.Arguments >> "%vbsGetPrivileges%"
+
+ECHO args = args ^& strArg ^& " " >> "%vbsGetPrivileges%"
+
+ECHO Next >> "%vbsGetPrivileges%"
+
+ECHO UAC.ShellExecute "!batchPath!", args, "", "runas", 1 >> "%vbsGetPrivileges%"
+
+"%SystemRoot%System32WScript.exe" "%vbsGetPrivileges%" %*
+
+exit /B
+
+:gotPrivileges
+
+setlocal & pushd .
+
+cd /d %~dp0
+
+if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul & shift /1)
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:: 以下为需要运行的批处理文件代码 ::
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+rem 本行以下可修改为你需要的bat命令（从上面三行冒号开始到下面都可删改）
+
 :kai-shi
 CLS
 ECHO.
@@ -220,7 +273,9 @@ ECHO               9 刷新组策略                        J 控制面板               
 ECHO.
 ECHO               O 电脑设置固定/自动ip地址、子网掩码、网关、dns地址（测试功能）                V 安全的清理C（系统）盘 
 ECHO.
-ECHO               Y 解决任务栏无响应的问题            / 退出程序	
+ECHO               W 卸载应用                          X 去除win 11预览版桌面水印                Y 解决任务栏无响应的问题                   
+ECHO.
+ECHO               Z 安装并使用IObit Unlocker          / 退出程序	
 ECHO.
 ECHO. ------------------------------------------------------------------------------------------------------------------------------------
 ECHO.
@@ -265,7 +320,10 @@ if /i "%id%"=="S" goto S
 if /i "%id%"=="T" goto T
 if /i "%id%"=="U" goto U
 if /i "%id%"=="V" goto V
+if /i "%id%"=="W" goto W
+if /i "%id%"=="X" goto X
 if /i "%id%"=="Y" goto Y
+if /i "%id%"=="Z" goto Z
 if /i "%id%"=="/" goto END
 ECHO.
 ECHO.输入无效,请重新输入...
@@ -370,11 +428,10 @@ CLS
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSecondsInSystemClock /t REG_DWORD /d 1 /f
 TASKKILL /F /IM explorer.exe
 ECHO.
-ECHO restar explorer.exe
-TIMEOUT /T 1 /NOBREAK >NUL
-start %windir%\explorer.exe
+ECHO. 重启explorer.exe
+START %windir%\explorer.exe
 ECHO.
-ECHO.ok
+ECHO. ok!
 TIMEOUT /T 1 /NOBREAK >NUL
 goto 6
 
@@ -533,7 +590,6 @@ ECHO.
 set /p yichu=【请输入工具脚本运行路径/位置，并回车】：
 PowerShell.exe -ExecutionPolicy Bypass -File "%yichu%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%yichu%"
-PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%yichu%"
 ECHO.
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
@@ -1468,7 +1524,6 @@ set /p wse=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
 PowerShell.exe -ExecutionPolicy Bypass -File "%wse%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%wse%"
-PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%wse%"
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
 goto Q
@@ -1503,18 +1558,15 @@ goto MENU
 :S
 CLS
 ECHO.
-ECHO. 准备中...
-TIMEOUT /T 1 /NOBREAK >NUL
-CLS
+ECHO.重新部署操作进程中...
 ECHO.
+ECHO.本功能可以重新部署windows系统操作进程，需要输入路径/位置，例如 ：D:\桌面\czjc.ps1
 ECHO.
-ECHO.本功能需要输入路径/位置，例如 ：D:\桌面\ps.ps1
+set jiao-ben=
+set /p jiao-ben=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
-set /p jiaoben=【请输入工具脚本执行路径/位置，并回车】：
-ECHO.
-PowerShell.exe -ExecutionPolicy Bypass -File "%jiaoben%"
-PowerShell.exe -ExecutionPolicy UnRestricted -File "%jiaoben%"
-PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%jiaoben%"
+PowerShell.exe -ExecutionPolicy Bypass -File "%jiao-ben%"
+PowerShell.exe -ExecutionPolicy UnRestricted -File "%jiao-ben%"
 ECHO.
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
@@ -1562,7 +1614,6 @@ set /p remove1=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
 PowerShell.exe -ExecutionPolicy Bypass -File "%remove1%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%remove1%"
-PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%remove1%"
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
 goto T
@@ -1579,7 +1630,6 @@ set /p AddApp=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
 PowerShell.exe -ExecutionPolicy Bypass -File "%AddApp%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%AddApp%"
-PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%AddApp%" 
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
 goto T
@@ -1673,6 +1723,34 @@ goto MENU
 
 
 
+:W
+CLS
+ECHO.
+ECHO.  该功能通过调用外部软件，可以卸载用户安装应用和系统自带应用。
+ECHO.
+START geek.exe
+ECHO.
+ECHO.请您按下键盘任意键继续...
+PAUSE>NUL
+goto MENU
+
+
+
+
+:X
+CLS
+ECHO.
+ECHO.  该功能通过调用外部软件，可以去除win 11预览版系统的桌面水印。
+ECHO.
+START uwd.exe
+ECHO.
+ECHO.请您按下键盘任意键继续...
+PAUSE>NUL
+goto MENU
+
+
+
+
 :Y
 CLS
 ECHO.
@@ -1727,7 +1805,6 @@ set /p bushu=【请输入工具脚本执行路径/位置，并回车】：
 ECHO.
 PowerShell.exe -ExecutionPolicy Bypass -File "%bushu%"
 PowerShell.exe -ExecutionPolicy UnRestricted -File "%bushu%"
-PowerShell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoLogo -NonInteractive -NoProfile -File "%bushu%"
 ECHO.
 ECHO.请您按下键盘任意键继续...
 PAUSE>NUL
@@ -1751,6 +1828,45 @@ ECHO.Returnning to MENU...
 TIMEOUT /T 1 /NOBREAK >NUL
 goto MENU
 
+
+
+:Z
+CLS
+ECHO.
+ECHO.  该功能所使用的软件可以更好地解锁顽固文件、不再有“无法删除”或“拒绝访问”的问题，永远不必担心PC上的“无法删除文件”。
+ECHO.
+ECHO.------------------------------------------------------ 功能区 -------------------------------------------------------
+ECHO.
+ECHO.						      1. 安装并使用
+ECHO.
+ECHO.						      2. 退出并返回主页面
+ECHO.
+ECHO.---------------------------------------------------------------------------------------------------------------------
+ECHO.
+set IObit=
+set /p IObit=【请直接输入功能对应数字，并回车 ( 1 - 4 )】： 
+if not "%IObit%"=="" set IObit=%IObit:~0,1%
+if /i "%IObit%"=="1" goto IObit
+if /i "%IObit%"=="2" goto MENU
+ECHO.
+ECHO.输入无效，请重新输入...
+TIMEOUT /T 1 /NOBREAK >NUL
+ECHO.
+goto Z
+
+:IObit
+CLS
+ECHO.
+ECHO. 打开安装程序，并安装中...
+TIMEOUT /T 1 /NOBREAK >NUL
+START unlocker-setup.exe
+ECHO.
+ECHO. 安装程序安装，请等待安装结束...
+ECHO.
+ECHO.请您按下键盘任意键继续...
+TIMEOUT /T 1 /NOBREAK >NUL
+PAUSE>NUL
+goto MENU
 
 :END
 CLS
