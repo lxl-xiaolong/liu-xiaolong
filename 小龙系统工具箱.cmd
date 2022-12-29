@@ -6,10 +6,10 @@
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9a3rVoYRtE3fYPX5qaLLe8F7wv0ZsdN
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9a3rVoYRtE3fYPX5qOdbvAAuyU=
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9a3rVoYRtE3fYPX5q2NOuRd+la1FQ==
-::fBE1pAF6MU+EWHzeyMfsyJ67vTgE1bI/wlGbGA59GQ0DeZuYkDt3/VM7X1t/adwX5FaqfJgktg==
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIroL5uT07u6Unnkye84MRIje37/AJfgWig==
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIroL5uT07u6Unnkye84MRJrV1ruNK+UBp1bhYYM9mH9Cnas=
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIroL5uT07u6Unnkye84MRJrM3vqLOOVz
+::fBE1pAF6MU+EWHzeyMfsyJ67vTgE1bI/wlGbGA59GQ0DeZuYkDt3/VM7X1t/adwX5FaqfJgktg==
 ::YAwzoRdxOk+EWAjk
 ::fBw5plQjdCyDJGyX8VAjFDdbQgO+GG6pDaET+NT34O2I7EQeW4I=
 ::YAwzuBVtJxjWCl3EqQJgSA==
@@ -24,8 +24,8 @@
 ::dAsiuh18IRvcCxnZtBNQ
 ::cRYluBh/LU+EWAjk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJjZksaHVXMbQs=
-::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTr0V9U=
+::cxY6rQJ7JhzQF1fEqQJjZksaHVXMbgs=
+::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTr0VNU=
 ::ZQ05rAF9IAHYFVzEqQK1+PTdkv2VNWW+CaIPbzsgaDF4J5rY0Qfo/0EKug==
 ::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
 ::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
@@ -231,7 +231,7 @@ goto MENU
 :MENU
 CLS
 ECHO.
-ECHO. *******************************************************************************************************
+ECHO. ************************************************************************************************************************************
 ECHO.                                    
 ECHO.  µ±Ç°Ê±¼ä£º%time:~0,2%Ê±%time:~3,2%·Ö%time:~6,2%Ãë  
 ECHO.
@@ -241,9 +241,9 @@ ECHO.  µ±Ç°¹¤¾ßÏä°æ±¾£º2022-12-28 ÉÏÎç11:43°æ
 ECHO.
 ECHO.  windowsÏµÍ³¹¤¾ßÏäÔËÐÐÂ·¾¶£º%~DP0
 ECHO.                                                                                                             
-ECHO. *******************************************************************************************************
+ECHO. ************************************************************************************************************************************
 ECHO. 
-ECHO. *********************************************** ÈôÒªÍË³ö£¬Çë¼üÈë" / "£¬²¢»Ø³µ *****************************************************
+ECHO. ************************************************ ÈôÒªÍË³ö£¬Çë¼üÈë" / "£¬²¢»Ø³µ *****************************************************
 ECHO.
 ECHO. ------------------------------------------------------------------------------------------------------------------------------------
 ECHO.
@@ -273,7 +273,7 @@ ECHO               O µçÄÔÉèÖÃ¹Ì¶¨/×Ô¶¯ipµØÖ·¡¢×ÓÍøÑÚÂë¡¢Íø¹Ø¡¢dnsµØÖ·£¨²âÊÔ¹¦ÄÜ£
 ECHO.
 ECHO               W Ð¶ÔØÓ¦ÓÃ                          X È¥³ýwin 11Ô¤ÀÀ°æ×ÀÃæË®Ó¡                Y ½â¾öÈÎÎñÀ¸ÎÞÏìÓ¦µÄÎÊÌâ                   
 ECHO.
-ECHO               Z °²×°/Ê¹ÓÃIObit Unlocker          / ÍË³ö³ÌÐò	
+ECHO               Z °²×°/Ê¹ÓÃIObit Unlocker           . Ö´ÐÐÒÉÄÑ½â´ð³ÌÐò                        / ÍË³ö³ÌÐò	
 ECHO.
 ECHO. ------------------------------------------------------------------------------------------------------------------------------------
 ECHO.
@@ -322,6 +322,7 @@ if /i "%id%"=="W" goto W
 if /i "%id%"=="X" goto X
 if /i "%id%"=="Y" goto Y
 if /i "%id%"=="Z" goto Z
+if /i "%id%"=="." goto MSDT
 if /i "%id%"=="/" goto END
 ECHO.
 ECHO.ÊäÈëÎÞÐ§,ÇëÖØÐÂÊäÈë...
@@ -1865,6 +1866,84 @@ ECHO.ÇëÄú°´ÏÂ¼üÅÌÈÎÒâ¼ü¼ÌÐø...
 TIMEOUT /T 1 /NOBREAK >NUL
 PAUSE>NUL
 goto MENU
+
+
+
+
+:MSDT
+CLS
+ECHO.
+ECHO.
+ECHO. ÔÚÅÅ³ý Windows ¹ÊÕÏÊ±¾­³£¶¼»áÓÃµ½ÒÉÄÑ½â´ð³ÌÐò£¬¶ø Windows 7/8/10/11 ÖÐÄÚÖÃµÄÒÉÄÑ½â´ð³ÌÐòÆäÊµÊÇ¿ÉÒÔÖ±½ÓÍ¨¹ýÃüÁîÌáÊ¾·ûÀ´½øÐÐ¿ìËÙµ÷ÓÃµÄ
+ECHO.
+ECHO. ÇëÄú°´ÏÂ¼üÅÌÈÎÒâ¼ü¼ÌÐø...
+PAUSE>NUL
+CLS
+ECHO.
+ECHO.
+ECHO. ÒÔÏÂÎªWindows ÖÐ³£ÓÃµÄÕï¶Ï°ü ID ÁÐ±í£º
+ECHO.
+ECHO. ===============================================================================================================================================
+ECHO.
+ECHO. Õï¶Ï°üID                                       ÃèÊö                                                                Ó¦ÓÃ³ÌÐò»ò¹¦ÄÜµÄÒÀÀµÏî
+ECHO.
+ECHO. AeroDiagnostic                                 ²éÕÒ²¢½â¾ö Aero ×ÀÃæÌåÑéÎÊÌâ                                        Aero ×ÀÃæÖ÷Ìâ
+ECHO.
+ECHO. NetworkDiagnosticsDA                           ²éÕÒ²¢½â¾öÊ¹ÓÃ DirectAccess Á¬½Óµ½¹¤×÷ÇøÍøÂçµÄÎÊÌâ                  Direct Access
+ECHO.
+ECHO. DeviceDiagnostic                               ²éÕÒ²¢½â¾öÉè±¸ºÍÓ²¼þµÄÎÊÌâ 
+ECHO.
+ECHO. HomeGroupDiagnostic                            ²éÕÒ²¢½â¾ö²é¿´¼ÒÍ¥×éÖÐµÄ¼ÆËã»ú»ò¹²ÏíÎÄ¼þµÄÎÊÌâ                      HomeGroup
+ECHO.
+ECHO. NetworkDiagnosticsInbound                      ²éÕÒ²¢½â¾ö´«ÈëµÄ¼ÆËã»úÁ¬½ÓºÍ Windows ·À»ðÇ½µÄÎÊÌâ
+ECHO. 
+ECHO. NetworkDiagnosticsWeb                          ²éÕÒ²¢½â¾öÁ¬½Óµ½ Internet »òÍøÕ¾µÄÎÊÌâ
+ECHO.
+ECHO. IEDiagnostic                                   ÓÐÖúÓÚ·ÀÖ¹¼ÓÔØÏîµÄÎÊÌâ£¬²¢½øÐÐÓÅ»¯ÁÙÊ±ÎÄ¼þºÍÓÃ»§µÄÁ¬½Ó             Internet Explorer
+ECHO.
+ECHO. IESecurityDiagnostic                           ²éÕÒ²¢½â¾ö Internet Explorer ÖÐ°²È«ºÍÒþË½¹¦ÄÜµÄÎÊÌâ                 Internet Explorer
+ECHO.
+ECHO. NetworkDiagnosticsNetworkAdapter               ²éÕÒ²¢½â¾öÎÞÒÉºÍÆäËüÍøÂçÊÊÅäÆ÷µÄÎÊÌâ
+ECHO. 
+ECHO. PerformanceDiagnostic                          ²éÕÒ²¢½â¾öÓ°Ïì WindowsËÙ¶ÈºÍÐÔÄÜµÄÎÊÌâ
+ECHO.
+ECHO. AudioPlaybackDiagnostic                        ²éÕÒ²¢½â¾öÉùÒô²¥·ÅÎÊÌâ                                              ÉùÒôÊä³öÉè±¸
+ECHO.
+ECHO. PowerDiagnostic                                ²éÕÒ²¢½â¾ö¿É½ÚÊ¡µçÔ´ÒÔ¼°ÑÓ³¤µç³ØÊÙÃüµÄ¼ÆËã»úµçÔ´Éè±¸µÄÎÊÌâ 
+ECHO.
+ECHO. PrinterDiagnostic                              ²éÕÒ²¢½â¾ö´òÓ¡ÎÊÌâ
+ECHO.
+ECHO. PCWDiagnostic                                  ²éÕÒ²¢½â¾öÔÚ´Ë°æ±¾µÄ Windows ÉÏÔËÐÐ¾É³ÌÐòµÄÎÊÌâ
+ECHO.
+ECHO. AudioRecordingDiagnostic                       ²éÕÒ²¢½â¾öÉùÒôÂ¼ÖÆÎÊÌâ                                              ÉùÒôÊä³öÉè±¸
+ECHO.
+ECHO. SearchDiagnostic                               ²éÕÒ²¢½â¾ö"Windows ËÑË÷"ÎÊÌâ                                        ÆôÓÃËÑË÷¹¦ÄÜ
+ECHO.
+ECHO. NetworkDiagnosticsFileShare                    ²éÕÒ²¢½â¾ö·ÃÎÊÆäËû¼ÆËã»úÉÏµÄÎÄ¼þºÍÎÄ¼þ¼ÐµÄÎÊÌâ
+ECHO.
+ECHO. MaintenanceDiagnostic                          ²éÕÒ²¢ÇåÀíÎ´Ê¹ÓÃµÄÎÄ¼þºÍ¿ì½Ý·½Ê½£¬²¢Ö´ÐÐÎ¬»¤ÈÎÎñ
+ECHO. 
+ECHO. WindowsMediaPlayerDVDDiagnostic                ²éÕÒ²¢½â¾öÔÚ Windows Media Player ÖÐ²¥·Å DVD µÄÎÊÌâ                 Windows Media Player
+ECHO. 
+ECHO. WindowsMediaPlayerLibraryDiagnostic            ²éÕÒ²¢½â¾ö Windows Media Player ¿âµÄÎÊÌâ                            Windows Media Player
+ECHO. 
+ECHO. WindowsMediaPlayerConfigurationDiagnostic      ²éÕÒ²¢½â¾ö Windows Media Player ÉèÖÃÎÊÌâ                            Windows Media Player 
+ECHO.
+ECHO. WindowsUpdateDiagnostic                        ²éÕÒ·Á°­Äã¸üÐÂ Windows µÄÎÊÌâ
+ECHO.
+ECHO. ===============================================================================================================================================
+ECHO.
+SET /P MSDT=¡¾ÇëÊäÈëÏàÓ¦µÄÕï¶Ï°ü ID£¨¸´ÖÆ/Õ³Ìù¼´¿É£©¡¿£º
+ECHO.
+ECHO.ÄúÒÑÊäÈë£º%MSDT%
+ECHO.
+MSDT.exe /ID "%MSDT%"
+ECHO.
+ECHO.ÇëÄú°´ÏÂ¼üÅÌÈÎÒâ¼ü¼ÌÐø...
+TIMEOUT /T 1 /NOBREAK >NUL
+PAUSE>NUL
+goto MENU
+
 
 :END
 CLS
