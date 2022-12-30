@@ -9,13 +9,13 @@
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIroL5uT07u6Unnkye84MRIje37/AJfgWig==
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIroL5uT07u6Unnkye84MRJrV1ruNK+UBp1bhYYM9mH9Cnas=
 ::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIroL5uT07u6Unnkye84MRJrM3vqLOOVz
-::fBE1pAF6MU+EWHzeyMfsyJ67vTgE1bI/wlGbGA59GQ0DeZuYkDt3/VM7X1t/adwX5FaqfJgktg==
+::fBE1pAF6MU+EWHreyHcjLQlHcCiNMmyGIrAP4/z0/9alo1kiYO0AXZfe5rCAM64a5EyE
 ::YAwzoRdxOk+EWAjk
 ::fBw5plQjdCyDJGyX8VAjFDdbQgO+GG6pDaET+NT34O2I7EQeW4I=
 ::YAwzuBVtJxjWCl3EqQJgSA==
 ::ZR4luwNxJguZRRnk
 ::Yhs/ulQjdF+5
-::cxAkpRVqdFKZSDk=
+::cxAkpRVqdFKZSjk=
 ::cBs/ulQjdF+5
 ::ZR41oxFsdFKZSTk=
 ::eBoioBt6dFKZSTk=
@@ -24,8 +24,8 @@
 ::dAsiuh18IRvcCxnZtBNQ
 ::cRYluBh/LU+EWAjk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJjZksaHVXMbgs=
-::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTr0VNU=
+::cxY6rQJ7JhzQF1fEqQJjZksaHVXMbws=
+::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTr0VdU=
 ::ZQ05rAF9IAHYFVzEqQK1+PTdkv2VNWW+CaIPbzsgaDF4J5rY0Qfo/0EKug==
 ::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
 ::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
@@ -44,6 +44,32 @@
 
 :: ------------------------------------    分割线：以下为主程序代码     -----------------------------------------
 
+@echo off
+
+:: BatchGotAdmin
+:-------------------------------------
+REM  --> Check for permissions
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+REM --> If error flag set, we do not have admin.
+if '%errorlevel%' NEQ '0' (
+    echo Requesting administrative privileges...
+    goto UACPrompt
+) else ( goto gotAdmin )
+
+:UACPrompt
+    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+    echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
+
+    "%temp%\getadmin.vbs"
+    exit /B
+
+:gotAdmin
+    if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
+    pushd "%CD%"
+    CD /D "%~dp0"
+:--------------------------------------
+
 @ECHO OFF
 @COLOR E
 CD /D "%~DP0"
@@ -52,6 +78,7 @@ TIMEOUT /T 1 /NOBREAK >NUL
 TITLE 小龙windows系统工具箱
 setlocal enableextensions enabledelayedexpansion
 
+set process=小龙windows系统工具箱.exe
 set regPath=HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify
 set regKey1=IconStreams
 set regKey2=PastIconsStream
@@ -60,86 +87,6 @@ MSG %username% 感谢您使用本人制作的windows系统工具箱！
 MSG %username% 使用中有任何问题，记得联系我！
 MSG %username% 联系方式1（qq邮箱：2539223617@qq.com）
 MSG %username% 联系方式2（微信号：Pisces_Mar14_LXL）
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:: [color=#070c0 !important]软媒魔方自动添加批处理文件管理员权限 ::
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-@echo off
-
-CLS
-
-ECHO.
-
-ECHO ================================
-
-ECHO 软媒魔方获取批处理文件管理员权限
-
-ECHO ================================
-
-:init
-
-setlocal DisableDelayedExpansion
-
-set "batchPath=%~0"
-
-for %%k in (%0) do set batchName=%%~nk
-
-set "vbsGetPrivileges=%temp%OEgetPriv_%batchName%.vbs"
-
-setlocal EnableDelayedExpansion
-
-:checkPrivileges
-
-NET FILE 1>NUL 2>NUL
-
-if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
-
-:getPrivileges
-
-if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
-
-ECHO.
-
-ECHO ********************************
-
-ECHO 请求 UAC 权限批准……
-
-ECHO ********************************
-
-ECHO Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
-
-ECHO args = "ELEV " >> "%vbsGetPrivileges%"
-
-ECHO For Each strArg in WScript.Arguments >> "%vbsGetPrivileges%"
-
-ECHO args = args ^& strArg ^& " " >> "%vbsGetPrivileges%"
-
-ECHO Next >> "%vbsGetPrivileges%"
-
-ECHO UAC.ShellExecute "!batchPath!", args, "", "runas", 1 >> "%vbsGetPrivileges%"
-
-"%SystemRoot%System32WScript.exe" "%vbsGetPrivileges%" %*
-
-exit /B
-
-:gotPrivileges
-
-setlocal & pushd .
-
-cd /d %~dp0
-
-if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul & shift /1)
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:: 以下为需要运行的批处理文件代码 ::
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-rem 本行以下可修改为你需要的bat命令（从上面三行冒号开始到下面都可删改）
 
 :kai-shi
 CLS
@@ -237,7 +184,7 @@ ECHO.  当前时间：%time:~0,2%时%time:~3,2%分%time:~6,2%秒
 ECHO.
 ECHO.  当前日期：%date% 
 ECHO.
-ECHO.  当前工具箱版本：2022-12-28 上午11:43版 
+ECHO.  当前工具箱版本：2022-12-30 上午13:12版 
 ECHO.
 ECHO.  windows系统工具箱运行路径：%~DP0
 ECHO.                                                                                                             
@@ -1514,7 +1461,7 @@ goto Q
 :hree
 CLS
 ECHO.
-ECHO.重新部署操作进程中...
+ECHO.重新部署WindowsStore中...
 TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO.本功能可以重新部署WindowsStore，需要输入路径/位置，例如 ：D:\桌面\ws.ps1
@@ -1557,9 +1504,9 @@ goto MENU
 :S
 CLS
 ECHO.
-ECHO.重新部署操作进程中...
+ECHO.执行中...
 ECHO.
-ECHO.本功能可以重新部署windows系统操作进程，需要输入路径/位置，例如 ：D:\桌面\ps.ps1
+ECHO.本功能可以尝试解决无法运行powershell脚本问题，需要输入路径/位置，例如 ：D:\桌面\ps.ps1
 ECHO.
 set jiao-ben=
 set /p jiao-ben=【请输入工具脚本执行路径/位置，并回车】：
@@ -1711,6 +1658,12 @@ del /f /s /q "%userprofile%\Local Settings\Temp\*.*"
 del /f /s /q "%userprofile%\recent\*.*"
 del /f /s /q "%windir%\SoftwareDistribution\Download\*.*"
 ECHO.
+TASKLIST | FINDSTR /I "%process%"
+if %errorlevel%==0 (
+ECHO 存在"%process%"进程！
+) else (
+start "%process%"
+)
 ECHO.
 ECHO  完成！
 TIMEOUT /T 1 /NOBREAK >NUL
