@@ -15,7 +15,7 @@
 ::YAwzuBVtJxjWCl3EqQJgSA==
 ::ZR4luwNxJguZRRnk
 ::Yhs/ulQjdF+5
-::cxAkpRVqdFKZSjk=
+::cxAkpRVqdFKZSDk=
 ::cBs/ulQjdF+5
 ::ZR41oxFsdFKZSTk=
 ::eBoioBt6dFKZSTk=
@@ -24,8 +24,8 @@
 ::dAsiuh18IRvcCxnZtBNQ
 ::cRYluBh/LU+EWAjk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJjZksaHVXMbws=
-::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTr0VdU=
+::cxY6rQJ7JhzQF1fEqQJjZksaHVXMaAs=
+::ZQ05rAF9IBncCkqN+0xwdVsHAlTMbTr0UtU=
 ::ZQ05rAF9IAHYFVzEqQK1+PTdkv2VNWW+CaIPbzsgaDF4J5rY0Qfo/0EKug==
 ::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
 ::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
@@ -44,7 +44,7 @@
 
 :: ------------------------------------    分割线：以下为主程序代码     -----------------------------------------
 
-@echo off
+@ECHO off
 
 :: BatchGotAdmin
 :-------------------------------------
@@ -53,13 +53,13 @@ REM  --> Check for permissions
 
 REM --> If error flag set, we do not have admin.
 if '%errorlevel%' NEQ '0' (
-    echo Requesting administrative privileges...
+    ECHO Requesting administrative privileges...
     goto UACPrompt
 ) else ( goto gotAdmin )
 
 :UACPrompt
-    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-    echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
+    ECHO Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+    ECHO UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
 
     "%temp%\getadmin.vbs"
     exit /B
@@ -76,7 +76,8 @@ CD /D "%~DP0"
 CHCP 936>NUL
 TIMEOUT /T 1 /NOBREAK >NUL
 TITLE 小龙windows系统工具箱
-setlocal enableextensions enabledelayedexpansion
+setlocal EnableExtensions
+setlocal EnableDelayedExpansion
 
 set process=小龙windows系统工具箱.exe
 set regPath=HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify
@@ -196,7 +197,7 @@ ECHO. --------------------------------------------------------------------------
 ECHO.
 ECHO.  程序功能区:
 ECHO.
-ECHO               0 任务管理器                        A 百度关键词搜索	                    K 网络连接									
+ECHO               0 任务管理器                        A 开启卓越性能电源计划方案	           K 网络连接									
 ECHO.           
 ECHO               1 磁盘清理                          B 检查系统完整性	                    L 查看电脑以前已连接WI-FI名称及密码
 ECHO.											
@@ -444,16 +445,25 @@ goto MENU
 :A
 CLS
 ECHO.
-ECHO.准备中......
+ECHO.设置中......
 TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
-set a=
-set /p a=【请输入关键字】：
-TIMEOUT /T 1 /NOBREAK >NUL
-start https://www.baidu.com/s?wd=%a%
+POWERCFG /LIST | FINDSTR /I "(卓越性能)" > NUL
+if %ERRORLEVEL% == 0 (
+goto SetActive
+) else (
+goto DuplicateScheme
+)
+:DuplicateScheme
+POWERCFG /DUPLICATESCHEME e9a42b02-d5df-448d-aa00-03f14749eb61 && ECHO 导入完成。 && goto SetActive
+:SetActive
+for /f "tokens=3,4" %%i in ('POWERCFG /LIST') do (
+if "%%j" == "(卓越性能)" POWERCFG /SETACTIVE %%i && ECHO 激活成功。 && goto EOF
+)
+:EOF
 ECHO.
-ECHO.搜索中......
-TIMEOUT /T 1 /NOBREAK >NUL
+ECHO.请您按下键盘任意键继续...
+PAUSE>NUL
 ECHO.
 ECHO.已完成
 TIMEOUT /T 1 /NOBREAK >NUL
@@ -1636,37 +1646,73 @@ ECHO.
 ECHO.  本功能可以安全的清理C（系统）盘，比如：C盘temp临时文件、安装软件解压后的临时文件、删除SoftwareDistribution里面download文件资料等。
 TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
-ECHO   清理时间可能较长，请耐心等待...
-TIMEOUT /T 1 /NOBREAK >NUL
 CLS
 ECHO.
 ECHO.
-del /f /s /q %systemdrive%\*.tmp
-del /f /s /q %systemdrive%\*._mp
-del /f /s /q %systemdrive%\*.log
-del /f /s /q %systemdrive%\*.gid
-del /f /s /q %systemdrive%\*.chk
-del /f /s /q %systemdrive%\*.old
-del /f /s /q %systemdrive%\recycled\*.*
-del /f /s /q %windir%\*.bak
-del /f /s /q %windir%\prefetch\*.*
-rd /f /s /q %windir%\temp & md %windir%\temp
-del /f /q %userprofile%\cookies\*.*
-del /f /q %userprofile%\recent\*.*
-del /f /s /q "%userprofile%\Local Settings\Temporary Internet Files\*.*"
-del /f /s /q "%userprofile%\Local Settings\Temp\*.*"
-del /f /s /q "%userprofile%\recent\*.*"
-del /f /s /q "%windir%\SoftwareDistribution\Download\*.*"
+ECHO ★☆ ★☆ ★☆ ★☆ ★☆★☆★☆ ★☆ ★☆ ★☆ ★☆★
+ECHO ★☆ ★☆ ★☆ ★☆ ★☆★☆★☆ ★☆ ★☆ ★☆ ★☆★
+ECHO.★☆                                              ☆★
+ECHO.★☆                                              ☆★
+ECHO.★☆   清理系统垃圾文件，请稍等......             ☆★
+ECHO ★☆                                              ☆★
+ECHO.★☆                                              ☆★
+ECHO ★☆ ★☆ ★☆ ★☆ ★☆★☆★☆ ★☆ ★☆ ★☆ ★☆★
+ECHO ★☆ ★☆ ★☆ ★☆ ★☆★☆★☆ ★☆ ★☆ ★☆ ★☆★
+ECHO 清理垃圾文件，速度由电脑文件大小而定。在没看到结尾信息时 
+ECHO 请勿关闭本窗口。 
+ECHO 正在清除系统垃圾文件，请稍后...... 
+ECHO 删除补丁备份目录 
+RD %windir%\$hf_mig$ /Q /S 
+ECHO 把补丁卸载文件夹的名字保存成2950800.txt 
+dir %windir%\$NtUninstall* /a:d /b >%windir%\2950800.txt 
+ECHO 从2950800.txt中读取文件夹列表并且删除文件夹 
+for /f %%i in (%windir%\2950800.txt) do rd %windir%\%%i /s /q 
+ECHO 删除2950800.txt 
+del %windir%\2950800.txt /f /q 
+ECHO 删除补丁安装记录内容（下面的del /f /s /q %systemdrive%\*.log已经包含删除此类文件） 
+del %windir%\KB*.log /f /q 
+ECHO 删除系统盘目录下临时文件 
+del /f /s /q %systemdrive%\*.tmp 
+ECHO 删除系统盘目录下临时文件 
+del /f /s /q %systemdrive%\*._mp 
+ECHO 删除系统盘目录下日志文件 
+del /f /s /q %systemdrive%\*.log 
+ECHO 删除系统盘目录下GID文件(属于临时文件，具体作用不详) 
+del /f /s /q %systemdrive%\*.gid 
+ECHO 删除系统目录下scandisk（磁盘扫描）留下的无用文件 
+del /f /s /q %systemdrive%\*.chk 
+ECHO 删除系统目录下old文件 
+del /f /s /q %systemdrive%\*.old 
+ECHO 删除回收站的无用文件 
+del /f /s /q %systemdrive%\recycled\*.* 
+ECHO 删除系统目录下备份文件 
+del /f /s /q %windir%\*.bak 
+ECHO 删除应用程序临时文件 
+del /f /s /q %windir%\prefetch\*.* 
+ECHO 删除系统维护等操作产生的临时文件 
+rd /s /q %windir%\temp & md %windir%\temp 
+ECHO 删除当前用户的COOKIE（IE） 
+del /f /q %userprofile%\cookies\*.* 
+ECHO 删除internet临时文件 
+del /f /s /q "%userprofile%\local settings\temporary internet files\*.*" 
+ECHO 删除当前用户日常操作临时文件 
+del /f /s /q "%userprofile%\local settings\temp\*.*" 
+ECHO 删除访问记录（开始菜单中的文档里面的东西） 
+del /f /s /q "%userprofile%\recent\*.*" 
 ECHO.
-TASKLIST | FINDSTR /I "%process%"
-if %errorlevel%==0 (
-ECHO 存在"%process%"进程！
-) else (
-start "%process%"
-)
+ECHO ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★
+ECHO ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★
+ECHO ★☆                                                          ☆★
+ECHO.★☆                                                          ☆★
+ECHO.★☆                                                          ☆★
+ECHO ★☆                                                          ☆★
+ECHO ★☆                恭喜您！清理全部完成！                    ☆★
+ECHO.★☆                                                          ☆★
+ECHO ★☆                                                          ☆★
+ECHO.★☆                                                          ☆★
+ECHO ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★
+ECHO ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★
 ECHO.
-ECHO  完成！
-TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
 ECHO. 请您按下键盘任意键继续...
 PAUSE>NUL
