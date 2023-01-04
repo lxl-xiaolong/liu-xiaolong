@@ -15,7 +15,7 @@
 ::YAwzuBVtJxjWCl3EqQJgSA==
 ::ZR4luwNxJguZRRnk
 ::Yhs/ulQjdF+5
-::cxAkpRVqdFKZSDk=
+::cxAkpRVqdFKZSjk=
 ::cBs/ulQjdF+5
 ::ZR41oxFsdFKZSTk=
 ::eBoioBt6dFKZSTk=
@@ -79,7 +79,6 @@ TITLE 小龙windows系统工具箱
 setlocal EnableExtensions
 setlocal EnableDelayedExpansion
 
-set process=小龙windows系统工具箱.exe
 set regPath=HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify
 set regKey1=IconStreams
 set regKey2=PastIconsStream
@@ -89,7 +88,7 @@ MSG %username% 使用中有任何问题，记得联系我！
 MSG %username% 联系方式1（qq邮箱：2539223617@qq.com）
 MSG %username% 联系方式2（微信号：Pisces_Mar14_LXL）
 
-:kai-shi
+:START
 CLS
 ECHO.
 ECHO.                                                      小龙WINDOWS系统工具箱
@@ -120,16 +119,16 @@ ECHO.
 set sm=
 set /p sm=【请直接输入对应序号回车( Y / N )】：
 if not "%sm%"=="" set sm=%sm:~0,1%
-if /i "%sm%"=="Y" goto next
+if /i "%sm%"=="Y" goto NEXT
 if /i "%sm%"=="N" goto END
 ECHO.
 ECHO.输入无效，请重新输入...
 TIMEOUT /T 1 /NOBREAK >NUL
 ECHO.
-goto kai-shi
+goto START
 
 
-:next
+:NEXT
 CLS
 ECHO.
 ECHO. 显示信息中...
@@ -197,7 +196,7 @@ ECHO. --------------------------------------------------------------------------
 ECHO.
 ECHO.  程序功能区:
 ECHO.
-ECHO               0 任务管理器                        A 开启卓越性能电源计划方案	           K 网络连接									
+ECHO               0 任务管理器                        A 开启卓越性能电源计划方案	            K 网络连接									
 ECHO.           
 ECHO               1 磁盘清理                          B 检查系统完整性	                    L 查看电脑以前已连接WI-FI名称及密码
 ECHO.											
@@ -1947,8 +1946,7 @@ goto MENU
 :END
 CLS
 ECHO.
-ECHO.退出程序中......
-TIMEOUT /T 1 /NOBREAK >NUL
+ECHO.退出程序
 EXIT /B 0
 
 
