@@ -1,0 +1,174 @@
+@charset "utf-8";
+	* {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	
+	body,
+	html {
+		height: 100%;
+		min-width: 100%;
+		font-size: 12px;
+		font-family: -apple-system, system-ui, Segoe UI, BlinkMacSystemFont, Tahoma, Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5B8B\4F53", sans-serif;
+		background-color: #c3ecff;
+		cursor: url("https://gitee.com/lxl-xiaolong/Liu-Xiaolong/raw/master/menghuan.ico"), auto;
+	}
+	
+	#ju-zhong {
+		margin: 0 auto;
+		max-width: 76%;
+		height: auto;
+		background-color: rgba(240, 255, 255, 0.2);
+	}
+	
+	#ge-ren-wang-zhan-ji-ben-xin-xi {
+		background-color: #FFFFE0;
+		line-height: 5rem;
+	}
+	
+	#title {
+		margin-top: 5px;
+		margin-bottom: 10px;
+		text-align: center;
+		font-weight: 600;
+		font-size: 2.9rem;
+		font-family: -apple-system, system-ui, Segoe UI, BlinkMacSystemFont, Tahoma, Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5B8B\4F53", sans-serif;
+		color: #F08080;
+	}
+	
+	#nei-rong {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 100%;
+		height: auto;
+	}
+	
+	#nei-rong summary {
+		font-size: 2rem;
+		font-weight: bold;
+		color: #000000;
+		line-height: 6rem;
+		background-color: #FFF5EE;
+	}
+	
+	#nei-rong li {
+		font-size: 2rem;
+		font-weight: normal;
+		color: #000000;
+		line-height: 6rem;
+		background-color: #FFE4E1;
+	}
+	
+	#nei-rong p {
+		font-size: 2rem;
+		font-weight: normal;
+		color: #0000FF;
+		line-height: 6rem;
+		background-color: #F0FFFF;
+	}
+	
+	a {
+		text-decoration: none;
+	}
+	
+	a:link {
+		color: #000;
+		font-size: 2rem;
+		font-weight: 400;
+	}
+	
+	a:visited {
+		color: #000;
+	}
+	
+	a:hover {
+		background: #FF0000;
+		color: #FFFFFF;
+		font-size: 2rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	
+	a:active {
+		color: #DC143C;
+		text-decoration: none;
+	}
+	
+	#zhu-ming-box {
+		margin-top: 10px;
+		width: 100%;
+		height: auto;
+		background-color: #F0FFFF;
+	}
+	
+	#zhu-ming-box p {
+		font-size: 2.2rem;
+		font-weight: 700;
+		line-height: 3.4rem;
+		text-indent: 2em;
+	}
+	
+	#web-notice {
+		width: 100%;
+		height: auto;
+		z-index: 200;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		background-color: #F0FFFF;
+	}
+	
+	#web-notice summary {
+		margin-top: 10px;
+		font-weight: bold;
+		text-align: left;
+		font-size: 30px;
+		color: Red;
+	}
+	
+	#web-notice p {
+		font-size: 17px;
+		margin-top: 10px;
+		line-height: 5rem;
+		color: #1E90FF;
+		padding-bottom: 10px;
+	}
+	
+	#web-notice a:link {
+		font-size: 17px;
+	}
+	
+	#footer {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		width: 100%;
+		height: auto;
+		background-color: #FFF0F5;
+		text-align: center;
+		z-index: 200;
+		line-height: 40px;
+		font-size: 18px;
+	}
+	
+	#fixed {
+		font-size: 2rem;
+		position: fixed;
+		right: 120px;
+		bottom: 500px;
+	}
+	
+	#freshed {
+		font-size: 2rem;
+		position: fixed;
+		right: 120px;
+		bottom: 450px;
+	}
+	
+	.bottom {
+		font-size: 2rem;
+		position: fixed;
+		right: 120px;
+		bottom: 400px;
+	}
