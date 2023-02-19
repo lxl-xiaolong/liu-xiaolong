@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+#logo-audio {
+	position: relative;
+	width: 50%;
+	height: 57px;
+	display: flex;
+	box-sizing: border-box;
+	/* margin: auto; */
+	left: 25%;
+	right: 25%;
+	bottom: 80px;
+	top: 0px;
+	/* justify-content: center;
+				align-items: center; */
+	/* border: 1px solid lightcoral; */
+	display: inline-block;
+}
+
+#logo-audio .logo {
+	float: left;
+	width: 280px;
+	height: 57px;
+	border-radius: 27px;
+}
+
+#logo-audio .audio {
+	float: right;
+	width: 280px;
+	height: 57px;
+}
