@@ -1,0 +1,168 @@
+@charset "utf-8"
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+body,html {
+	background-color: #F5F5F5;
+	min-width: 1200px;
+	max-width: 1400px;
+	font-family: -apple-system, system-ui, Segoe UI, BlinkMacSystemFont, Tahoma, Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5B8B\4F53", sans-serif;
+}
+
+#daohang {
+	position: relative;
+	width: 100%;
+	height: 120px;
+	padding: 10px 10px;
+	/* border: 1px solid gray; */
+	box-sizing: border-box;
+	background-color: #FFFFFF;
+}
+
+#daohang img {
+	display: inline-block;
+	width: 160px;
+	height: 60px;
+	margin: 12px 10px;
+	float: left;
+	line-height: 55px;
+	box-shadow: 15px;
+	box-shadow: 9px 9px 1px gray;
+}
+
+#daohang .list table{
+	position: absolute;
+	left: 240px;
+	width: 1000px;
+	height: 70px;
+	border: 1px solid gray;
+	float: left;
+	box-sizing: border-box;
+	margin: 5px 20px;
+	border-collapse: collapse;
+}
+#daohang .list tr td {
+	border: 1px solid gray;
+	text-align: center;
+	vertical-align: middle;
+	box-sizing: border-box;
+	padding: 2px 2px;
+	width: 110px;
+	height: 40px;
+	border-radius: 15px;
+}
+
+#daohang .list tr td:hover {
+	background-color: gold;
+	border-radius: 15px;
+	transform: translate(0, -1px);
+	transition: all 0.3s;
+	transition-timing-function: ease-in-out;
+	transition-delay: 0.2s;
+}
+
+.left-gonggao {
+	position: sticky;
+	top: 0px;
+	width: 409px;
+	height: auto;
+	float: left;
+	border: 1px solid gray;
+	font-size: 18px;
+	line-height: 30px;
+	padding: 5px 15px;
+}
+
+#content {
+	position: relative;
+	width: 850px;
+	height: 100%;
+	display: flex;
+	margin: 0 auto;
+	/* border: 1px solid gray; */
+	box-sizing: border-box;
+	right: 26px;
+}
+
+#content .fenxiang>a {
+	display: block;
+	margin: 15px 15px;
+	padding: 10px 10px;
+	background-color: #99CC99;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+#content .fenxiang table {
+	margin: 10px 10px;
+	border-collapse: collapse;
+	margin: 15px 15px;
+}
+
+#content .fenxiang table tr td {
+	border: 1px solid gray;
+	text-align: center;
+	vertical-align: middle;
+	padding: 8px 8px;
+	width: 130px;
+	height: 101px;
+}
+
+#content .fenxiang tr td:hover {
+	border: 1px solid #FA804C;
+	background-color: #CC6699;
+	border-radius: 15px;
+	transform: scale(1.1);
+	box-shadow: 0 0 5px gray, 0 0 6px yellow;
+	transition: all 0.5s;
+	transition-delay: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+#content .fenxiang tr td a:hover {
+	color: #FFFFFF;
+}
+
+#content>.fenxiang>p {
+	margin: 15px 15px;
+	padding: 10px 10px;
+	background-color: #CCFFCC;
+}
+
+.top {
+	position: fixed;
+	font-size: 2rem;
+	width: 60px;
+	height: 60px;
+	bottom: 240px;
+	right: 5px;
+}
+
+.fresh {
+	position: fixed;
+	font-size: 2rem;
+	width: 60px;
+	height: 60px;
+	bottom: 160px;
+	right: 5px;
+}
+
+.bottom {
+	position: fixed;
+	font-size: 2rem;
+	width: 60px;
+	height: 60px;
+	bottom: 100px;
+	right: 5px;
+}
